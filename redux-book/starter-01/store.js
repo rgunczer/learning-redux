@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/root'
+import logMiddleware from './middleware/log';
 
 // const initialState = {
 //     recipes: [ { name: 'Omelette '} ],
@@ -9,7 +10,8 @@ import rootReducer from './reducers/root'
 const store = createStore(
     rootReducer,
     // initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(logMiddleware)
 );
 
 window.store = store;
