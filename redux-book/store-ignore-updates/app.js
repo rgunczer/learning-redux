@@ -6,12 +6,21 @@ const initialState = {
     ingredients: []
 };
 
-const reducer = (state, action) => state;
+const reducer = (state, action) => state
+
 const store = createStore(
     reducer,
     initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+window.store = store;
+
+const onStoreChange = () => {
+    console.log('onStoreChange: ', store.getState());
+}
+
+store.subscribe(onStoreChange);
 
 $(document).ready(() => {
     console.log('doc ready');
@@ -25,7 +34,7 @@ $(document).ready(() => {
 
     $('#add').on('click', () => {
         // console.log('add');
-        store.dispatch({ type: 'ACTION' });
+        store.dispatch({ type: 'SOME_ACTION' });
     });
 
 });
